@@ -424,6 +424,12 @@ class TestPatchApply(unittest.TestCase):
         pto.apply(strip=0, root=treeroot)
         self.assertFalse(os.path.exists(os.path.join(treeroot, 'deleted')))
 
+    def test_fuzzy(self):
+        treeroot = join(self.tmpdir, 'rootparent')
+        shutil.copytree(join(TESTS, '10fuzzy'), treeroot)
+        pto = patch_ng.fromfile(join(TESTS, '10fuzzy/10fuzzy.patch'))
+        pto.apply(strip=0, root=treeroot)
+
 
 class TestHelpers(unittest.TestCase):
     # unittest setting
